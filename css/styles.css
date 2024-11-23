@@ -1,0 +1,101 @@
+
+@font-face {
+    font-family: "CeraPro";
+    src: local("CeraPro-Regular"),
+    url("../fonts/CeraPro-Regular.woff2") format("woff2"),
+    url("../fonts/CeraPro-Regular.ttf") format("truetype");
+    font-weight: 400;
+   }
+  
+   @font-face {
+    font-family: "CeraPro";
+    src: local("CeraPro-Medium"),
+    url("../fonts/CeraPro-Medium.woff2") format("woff2");
+    font-weight: 500;
+   }
+  
+   @font-face {
+    font-family: "CeraPro";
+    src: local("CeraPro-Bold"),
+    url("../fonts/CeraPro-Bold.woff2") format("woff2");
+    font-weight: 700;
+   }
+   @font-face {
+    font-family: "CeraPro";
+    src: local("CeraPro-Black"),
+    url("../fonts/CeraPro-Black.woff2") format("woff2");
+    font-weight: 900;
+   }
+   body {
+    font-family: "CeraPro", sans-serif;
+  }
+body {
+    background: #46A358;
+}
+
+.REGISTRATION {
+    box-sizing: border-box;
+    width: 500px;
+    height: 656px;
+    background: #FFFFFF;
+    margin: 52px auto;
+    padding-top: 52px;
+}
+
+.reg {
+    color: #46A358;
+    font-weight: bold;
+}
+
+h2 {
+    color: #0c0a0a;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+h3 {
+    color: #0c0a0a;
+    font-size: 13px;
+    text-align: center;
+}
+
+input {
+    box-sizing: border-box;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dcdcdc;
+    margin-left: 100px;
+    margin-top: 16px;
+    padding-left: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.sub {
+    width: 300px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #46A358;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-top: 41px;
+    margin-bottom: 36px;
+}
+
+.google {
+    width: 300px;
+    height: 40px;
+    background-color: #FFFFFF;
+    margin-top: 27px;
+    }
+
+.fb {
+    width: 300px;
+    height: 40px;
+    background-color: #FFFFFF;
+    margin-top: 15px; 
+    margin-bottom: 40px;
+}

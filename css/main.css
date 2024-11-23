@@ -1,0 +1,724 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  list-style: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "CeraPro";
+  src: local("CeraPro-Regular"),
+    url("../fonts/CeraPro-Regular.woff2") format("woff2"),
+    url("../fonts/CeraPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "CeraPro";
+  src: local("CeraPro-Medium"),
+    url("../fonts/CeraPro-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "CeraPro";
+  src: local("CeraPro-Bold"), url("../fonts/CeraPro-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "CeraPro";
+  src: local("CeraPro-Black"),
+    url("../fonts/CeraPro-Black.woff2") format("woff2");
+  font-weight: 900;
+}
+
+/* @font-face {
+  font-family: "HangingLetters";
+  src: local("Hanging-Letters"),
+  url("../fonts/hanging-letters.ttf") format("truetype");
+} */
+/* Применение шрифта */
+/* Основные стили */
+body {
+  font-family: "CeraPro", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  padding-top: 30px;
+  padding-bottom: 12px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 34.3px;
+  width: 150px;
+}
+
+ul {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  position: relative;
+  /* Для вложенных меню */
+  font-size: 18px;
+  cursor: pointer;
+}
+
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+/* Стили основного меню */
+.navigation>li>a {
+  text-decoration: none;
+  color: #3d3d3d;
+  padding-bottom: 5px;
+  display: inline-block;
+  position: relative;
+  /* Для подчеркивания */
+}
+
+.navigation>li:hover>a {
+  font-weight: bold;
+  text-decoration: underline;
+  /* Добавляем подчеркивание */
+  text-underline-offset: 25px;
+  /* Расстояние подчеркивания от текста */
+  text-decoration-thickness: 2px;
+  /* Толщина подчеркивания */
+  text-decoration-color: #46a358;
+  /* Зеленый цвет линии */
+}
+
+/* Стили выпадающего меню первого уровня */
+
+.submenu {
+  visibility: hidden;
+  /* Меняем на скрытие вместо display: none */
+  opacity: 0;
+  /* Прозрачность для эффекта появления */
+  position: absolute;
+  top: 65px;
+  /* Смещение вниз на 37px, чтобы подменю не перекрывало основной элемент */
+  left: 0;
+  background-color: #edf6ee;
+  width: 188px;
+  display: block;
+  /* Убедимся, что элементы расположены вертикально */
+  transition: visibility 0.6s, opacity 0.6s;
+  /* Плавный переход */
+  z-index: 1000;
+  margin: 0;
+  /* Убираем внешние отступы */
+  padding: 0;
+  /* Убираем внутренние отступы */
+  list-style: none;
+  /* Убираем маркеры списка */
+}
+
+.submenu li {
+  display: block;
+  /* Элементы внутри меню располагаются вертикально */
+}
+
+.submenu li a {
+  display: block;
+  /* Каждая ссылка занимает всю ширину */
+  color: #3d3d3d;
+  text-decoration: none;
+  padding: 7px 14px;
+  /* Внутренние отступы */
+  font-size: 16px;
+  line-height: 35px;
+  /* Высота пунктов */
+}
+
+.submenu li a:hover {
+  background-color: #1a712a;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Показываем подменю при наведении */
+.menu-visible:hover>.submenu {
+  visibility: visible;
+  /* Показываем подменю */
+  opacity: 1;
+  /* Убираем прозрачность */
+  background-color: #edf6ee;
+  /* Убедитесь, что фон задан */
+}
+
+
+/* Стили выпадающего меню второго уровня */
+.submenu-right {
+  display: none;
+  position: absolute;
+  top: -146px;
+  left: 188px;
+  /* На уровне первого меню */
+  background-color: #edf6ee;
+  width: 188px;
+}
+
+.submenu-right li a:hover {
+  background-color: #1a712a;
+}
+
+.menu-visible:hover>.submenu-right {
+  display: block;
+}
+
+/* Добавляем стрелку только к пунктам с подменю */
+.has-submenu {
+  position: relative;
+  /* Устанавливаем относительно контейнера */
+}
+
+.has-submenu>a::after {
+  content: ">";
+  font-size: 14px;
+  color: #3d3d3d;
+  /* Цвет стрелки */
+  position: absolute;
+  right: 10px;
+  /* Отступ стрелки от правого края */
+  top: 50%;
+  /* Центрирование по вертикали */
+  transform: translateY(-50%);
+  /* Смещаем стрелку для идеального центрирования */
+  transition: transform 0.3s, content 0.3s, color 0.3s;
+  /* Анимация для изменений */
+}
+
+/* Меняем стрелку на "<" при наведении */
+.has-submenu:hover>a::after {
+  content: "<";
+  /* Изменяем символ */
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Кнопка "Login" */
+.login {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #46a358;
+  color: #ffffff;
+  border: none;
+}
+
+/* первая секция */
+section .container {
+  margin-top: 12px;
+  background: linear-gradient(97.77deg,
+      rgba(245, 245, 245, 0.5) -23.46%,
+      rgba(245, 245, 245, 0.5) 107.51%);
+}
+
+section .left-side {
+  float: left;
+  max-width: 50%;
+  padding: 68px 43px;
+  vertical-align: top;
+}
+
+section .right-side {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 50%;
+}
+
+.shop {
+  width: 140px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #46a358;
+  color: #ffffff;
+  margin-top: 44px;
+  cursor: pointer;
+}
+
+p {
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 70px;
+}
+
+/* начало второго блока */
+.container_2 {
+  display: flex;
+  align-items: flex-start;
+  /* Выравнивание по верхней границе */
+  width: 1200px;
+  /* Фиксированная ширина контейнера */
+  margin: 0 auto;
+  /* Центрирование контейнера на странице */
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.left .section {
+  margin-bottom: 10px;
+  /* Отступ между секциями слева */
+}
+
+.section {
+  padding: 20px;
+  border: 1px solid #000;
+  width: 200px;
+}
+
+.categories ul {
+  width: 310px;
+  height: 744px;
+  float: left;
+  margin-top: 26px;
+  gap: 0;
+  /* Сбрасываем gap для нужных элементов */
+  flex-direction: column;
+  /* Вертикальное расположение */
+  background: linear-gradient(97.77deg,
+      rgba(245, 245, 245, 0.5) -23.46%,
+      rgba(245, 245, 245, 0.5) 107.51%);
+}
+
+.categories li {
+  margin-left: 18px;
+  /* margin-top: 14px; */
+  text-decoration: none;
+}
+
+.categories ul li:first-child {
+  font-weight: bold;
+  /* Делаем первый элемент жирным */
+}
+
+.categories li:first-child {
+  margin-top: 14px;
+  /* Отступ сверху только для первого элемента */
+}
+
+.categories ul li:nth-child(2) {
+  color: green;
+  /* Красим второй элемент в зелёный цвет */
+  font-weight: bold;
+}
+
+.categories ul li:nth-child(n + 2) {
+  padding-left: 12px;
+  /* Смещаем все элементы, начиная со второго, на 30px вправо */
+}
+
+.categories ul li {
+  margin-bottom: 40px;
+  /* Добавляем отступ снизу для вертикального расстояния */
+}
+
+.categories ul li:last-child {
+  margin-bottom: 0;
+  /* Убираем отступ у последнего элемента */
+}
+
+.sale {
+  width: 310px;
+  /* height: 470px; */
+}
+
+.short_by {
+  margin-bottom: 31px;
+}
+
+.products {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 840px;
+  margin-top: 26px;
+  margin-left: 50px;
+  float: right;
+}
+
+.short_by ul li:first-child {
+  color: #46a358;
+  /* Задает цвет для первого элемента */
+  text-decoration: underline;
+  /* Подчеркивает первый элемент */
+  font-weight: bold;
+  text-underline-offset: 7px;
+  /* Отступ подчеркивания от текста */
+}
+
+.short_by ul li:hover {
+  color: #46a358;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+
+/* .container_prod {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+} */
+.container_prod {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* три колонки одинаковой ширины */
+  column-gap: 33px;
+  /* отступ между колонками */
+  row-gap: 70px;
+  /* отступ между строками */
+  padding: 0;
+  /* убираем отступы слева и справа */
+  margin: 0 auto;
+  /* для центрирования контейнера */
+}
+
+.product-item {
+  width: 258px;
+  height: 350px;
+}
+
+.image-background {
+  background: #fbfbfb;
+  width: 258px;
+  height: 300px;
+  padding: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-background:hover {
+  border-top: 1px solid green;
+}
+
+.card-buttons {
+  position: absolute;
+  bottom: 7px;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 10px;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+
+  button {
+    padding: 8px;
+    border-radius: 4px;
+    background: white;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+}
+
+.image-background:hover .card-buttons {
+  opacity: 1;
+  /* Показываем элемент */
+  visibility: visible;
+  /* Делаем его видимым */
+}
+
+.price-old {
+  color: #a5a5a5;
+  font-weight: normal;
+  text-decoration: line-through;
+  margin-left: 16px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.badge {
+  width: 80px;
+  height: 29px;
+  position: relative;
+  background: #46a358;
+  top: 14px;
+  left: 0;
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-name {
+  font-size: 16px;
+  margin: 12px 0 6px;
+}
+
+.product-price {
+  font-size: 16px;
+  color: #46a358;
+  font-weight: bold;
+}
+
+.product-name,
+.product-price {
+  margin: 0;
+  /* padding-top: 5px; */
+}
+
+/* СЕКСИЯ SALE */
+.sale {
+  display: flex;
+  flex-direction: column;
+  /* Размещает элементы вертикально */
+  align-items: center;
+  /* Центрирует элементы по горизонтали */
+  /* justify-content: center; Центрирует элементы по вертикали */
+  text-align: center;
+  /* Выравнивает текст по центру */
+  /* max-width: 300px; Ограничение ширины, по желанию */
+  /* background: linear-gradient(180deg, rgba(70, 163, 88, 0.1) 0%, rgba(70, 163, 88, 0.03) 100%); */
+  width: 310px;
+  height: 470px;
+  /* padding: 4px; */
+}
+
+/* .sale-text {
+  font-family: "hanging", sans-serif;
+  font-size: 65px;
+  /* Размер текста для заголовка */
+/* font-weight: bold; */
+/* color: #46a358; */
+/* Цвет текста для надписи "Super Sale" */
+/* margin: 10px 0; Отступы сверху и снизу */
+/* } */
+
+/* .sale p:nth-child(2) {
+  font-size: 23px;
+  /* Размер текста для "UP TO 75% OFF" */
+/* color: #3d3d3d;
+  margin-top: 11px;
+  Отступы сверху и снизу */
+.sale-image {
+  /* width: 100%; */
+  /* Изображение будет адаптироваться к ширине контейнера */
+  height: auto;
+  /* max-width: 150px; Максимальная ширина изображения */
+  /* margin-top: 15px; Отступ сверху для изображения */
+}
+
+/* Блок кнопок внизу страницы */
+.pagination {
+  display: flex;
+  justify-content: right;
+  /* Центрируем блок с кнопками */
+  align-items: center;
+  gap: 10px;
+  /* Расстояние между кнопками */
+  margin-top: 90px;
+  margin-bottom: 82px;
+  /* padding: 90px 82px; Отступы сверху и снизу */
+}
+
+.page-btn {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  color: #333;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.page-btn:hover {
+  background-color: #46a358;
+  /* Изменение фона при наведении */
+  color: #fff;
+  /* Цвет текста активной кнопки */
+}
+
+.page-btn.active {
+  background-color: #46a358;
+  /* Фон активной кнопки */
+  color: #fff;
+  /* Цвет текста активной кнопки */
+}
+
+/* секция 3 */
+.container_3 {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.frame1 {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  margin-top: 69px;
+  margin-bottom: 138px;
+  gap: 28px;
+}
+
+.summer,
+.styling {
+  display: flex;
+  width: 586px;
+  height: 250px;
+  margin: 0 auto;
+  align-items: flex-end;
+  background: #fbfbfb;
+}
+
+.img1 {
+  width: 287px;
+  height: 292px;
+}
+
+.img1 {
+  width: 289px;
+  height: 287px;
+}
+
+.text-right {
+  text-align: right;
+  margin-right: 30px;
+  margin-bottom: 46px;
+}
+
+.blog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title-frame {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3d3d3d;
+}
+
+.find-more {
+  width: 140px;
+  height: 40px;
+  margin-top: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #46a358;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.find-more:hover {
+  border: 1px solid #3d3d3d;
+  font-weight: bold;
+}
+
+.comment {
+  color: rgba(114, 114, 114, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.blog-header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3d3d3d;
+}
+
+.blog-header p {
+  margin-bottom: 35px;
+  margin-top: 15px;
+}
+
+.blog-posts {
+  display: flex;
+  justify-content: space-between;
+  gap: 44px;
+  margin-bottom: 68px;
+}
+
+.blog-item {
+  width: 268px;
+  height: 362px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  background: #fbfbfb;
+}
+
+.text-container {
+  width: 242px;
+  height: 146px;
+  padding-bottom: 12px;
+  margin-top: 9px;
+  box-sizing: border-box;
+}
+
+.date {
+  color: #46a358;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #727272;
+  margin: 8px 0;
+}
+
+.read {
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.read:hover {
+  color: #46a358;
+}
